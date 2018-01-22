@@ -11,6 +11,9 @@ BASE_DIR = os.path.dirname(SRC_DIR)
 # data directory
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
+# deidentified data directory
+DEIDENTIFIED_DIR = os.path.join(BASE_DIR, 'deidentified')
+
 # face metadata directory (files containing face locations and dimensions)
 FACES_DIR = os.path.join(BASE_DIR, 'faces')
 
