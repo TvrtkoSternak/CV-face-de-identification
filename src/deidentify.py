@@ -10,7 +10,6 @@ from deidentifier2 import Deidentifier
 from config import DATA_DIR, DEIDENTIFIED_DIR
 from config import FRONTAL_CLF, PROFILE_CLF
 
-
 def deidentify_data(data_dir, output_dir):
     """
     Runs face deidentification on every image found in the
@@ -29,7 +28,7 @@ def deidentify_data(data_dir, output_dir):
     for root, _, files in tqdm(list(os.walk(data_dir))):
         for image_file in files:
             img = cv2.imread(os.path.join(root, image_file))
-            #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             frontals = frontal_face_cascade.detectMultiScale(img, 1.3, 5)
             profiles = profile_face_cascade.detectMultiScale(img, 1.3, 5)
 
@@ -39,19 +38,18 @@ def deidentify_data(data_dir, output_dir):
 
             old_path = os.path.join(root, image_file)
             new_path = old_path.replace(data_dir, output_dir)
-
             # create the output dir if it doesn't exist
-            os.makedirs(os.path.dirname(new_path), exist_ok=True)
+            #os.makedirs(os.path.dirname(new_path), exist_ok=True)
 
             # deidentify image
             img_blurred = img
             for x, y, w, h in faces:
-                img_blurred[y:y+h, x:x+w] = \
-                    gaussian_filter(img_blurred[y:y+h, x:x+w], 5)
-
-            # img_blurred = deidentifier.deidentify(image, faces)
+                img_blurred[y:y+h, x:x+w] = deidentifier.deidentify(img_blurred[y:y+h, x:x+w])
+                #img_unblurred = img_blurred
+                #img_unblurred[y:y+h, x:x+w] = deidentifier.identify(img_unblurred[y:y+h, x:x+w])
             
             cv2.imwrite(new_path, img_blurred)
+            #cv2.imwrite(new_path, img_unblurred)
 
 
 if __name__ == '__main__':
@@ -67,3 +65,5 @@ if __name__ == '__main__':
     args = vars(parser.parse_args())
 
     deidentify_data(**args)
+
+    # TODO detect faces in deidentified image and call identify function upon them
