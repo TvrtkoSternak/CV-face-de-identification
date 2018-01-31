@@ -1,4 +1,4 @@
-"""Module contains global flags and data directories."""
+"""Module contains global configuration flags and data directories."""
 import os
 
 
@@ -14,8 +14,14 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 # deidentified data directory
 DEIDENTIFIED_DIR = os.path.join(BASE_DIR, 'deidentified')
 
+# reidentified data directory
+REIDENTIFIED_DIR = os.path.join(BASE_DIR, 'reidentified')
+
 # face metadata directory (files containing face locations and dimensions)
 FACES_DIR = os.path.join(BASE_DIR, 'faces')
+
+# face metadata path
+FACES_PICKLE = os.path.join(FACES_DIR, 'faces.pickle')
 
 # classifier directory
 CLF_DIR = os.path.join(BASE_DIR, 'Classifiers')
