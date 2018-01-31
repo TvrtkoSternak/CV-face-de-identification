@@ -18,7 +18,7 @@ The data path should look like this: ```.../CV-face-de-identification/data/lfw/.
 
 Usage
 ----
-To deidentify the images from the data directory, run the following command:
+To **deidentify** the images from the data directory, run the following command:
 
 ```python3 src/deidentify.py```
 
@@ -28,8 +28,18 @@ For more details, run:
 
 ```python3 src/deidentify.py --help```
 
-To evaluate the deidentification process, run the ```src/face_recognition.ipynb``` notebook.
+To **evaluate** the deidentification process, run the ```src/face_recognition.ipynb``` notebook.
 
+To **re-identify** the deidentified images, run the following script:
+
+```python3 src/reidentify.py```
+
+This will create a reidentified directory in the project directory containing the reidentified images.
+For more details, run:
+
+```python3 src/reidentify.py --help```
+
+To check if everything went well, run the ```src/Playground.ipynb``` notebook.
 
 Authors and contributors
 ---
